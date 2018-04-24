@@ -9,7 +9,7 @@
             User name:<br>
             <input type="text" name="usrname"><br>
             Password:<br>
-            <input type="text" name="usrpwd"><br>
+            <input type="text" name="hashpass"><br>
             <input type="button" onclick="" value="SIGN IN"></button>
             or
             <input type="button" onclick="register.php" value="CREATE ACCOUNT"></button>
