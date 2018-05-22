@@ -12,6 +12,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
+$dbname = "benis_users";
 // Skapa uppkoppling
 $conn = new mysqli($servername, $username, $password);
 // Kolla att det går att koppla sig, om ej, skriv ut felet
