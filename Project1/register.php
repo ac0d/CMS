@@ -1,84 +1,55 @@
+<?php
+require_once('connect.php');
+if (isset($_POST) & !empty($_POST)) {
+    $username = mysqli_real_escape_string($connection, $_POST['username']);
+    $password = md5($_POST['password']);
+    $firstname = mysqli_real_escape_string($connection, $_POST['firstname']);
+    $lastname = mysqli_real_escape_string($connection, $_POST['lastname']);
+    $email = mysqli_real_escape_string($connection, $_POST['email']);
+    $zip = mysqli_real_escape_string($connection, $_POST['zip']);
+    $info = mysqli_real_escape_string($connection, $_POST['info']);
+    $salary = mysqli_real_escape_string($connection, $_POST['salary']);
+    
+    $sql = "INSERT INTO `users` (username, password, firstname, lastname, email, zip, info, salary) 
+    VALUES ('$username', '$password', '$firstname', '$lastname', '$email', '$zip', '$info', '$salary',)";
+    $result = mysqli_query($connection, $sql);
+    if($result){
+        $smsg = "User Registration Succesful";
+    }else{
+        $fmsg = "User Registraion Failed";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>REGISTER!</title>
-        
+        <title>Get Benis</title>
     </head>
-    <body text-align = center>
-        <h2>PLS REGISTAR</h2>
-        <form>
+    <body>
+        <?php if(isset($smsg)){ ?><?php echo $smsg; ?><?php } ?><br>
+        <?php if(isset($fmsg)){ ?><?php echo $fmsg; ?><?php } ?><br>
+        <form method="POST">
             Username:<br>
             <input type="text" name="username"><br>
             Password:<br>
-            <input type="text" name="password"><br>
+            <input type="password" name="password"><br>
             First name:<br>
             <input type="text" name="firstname"><br>
             Last name:<br>
             <input type="text" name="lastname"><br>
-            E-mail:<br>
-            <input type="text" name="email"><br>
+            Email:<br>
+            <input type="email" name="email"><br>
             Postal Code:<br>
-            <input type="text" name="postalcode"><br>
+            <input type="text" name="zip"><br>
 			About You:<br>
-			<input type="text" name="about"><br>
+			<input type="text" name="info"><br>
             Årslön:<br>
-            <input type="text" name="arslon"><br>
-            I Have a:<br>
-            <fieldset id="group1">
-            <input type="radio" name="group1" value="benis" checked> Benis<br>
-            <input type="radio" name="group1" value="bussy"> Bussy<br>
-            <input type="radio" name="group1" value="both"> Both<br>
-            </fieldset>
-            I Want Sum:<br>
-            <fieldset id="group2">
-            <input type="radio" name="group2" value="benis" checked> Benis<br>
-            <input type="radio" name="group2" value="busy"> Bussy<br>
-            <input type="radio" name="group2" value="both"> Both<br>
-            </fieldset>
-             <button type="button" onclick="register();alertfunction();location.href='profile.php'" value="REGISTER"></button> 
-            
-            <?php
-            function register(){
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "benis_users";
-                // Skapa uppkoppling
-                $conn = new mysqli($servername, $username, $password);
-                // Kolla att det går att koppla sig, om ej, skriv ut felet
-                if ($conn->connect_error) {
-                    die("Något gick snett: " . $conn->connect_error);
-                }
-                echo "Uppkopplingen till databasen lyckades</br>";
-                
-                $stmt = $conn->prepare("INSERT INTO users (usrname, hashpass, firstname, lastname, mail, zip, info, salary, ihave, lookingfor)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("sssssisdss", $username, $hashpass, $firstname, $lastname, $mail, $zip, $info, $salary, $ihave, $lookingfor);
-                
-                $usrname = $_GET["username"];
-                $hashpass = md5($_GET["password"]);
-                $firstname = $_GET["firstname"];
-                $lastname =  $_GET["lastname"];
-                $mail = $_GET["email"];
-                $zip = $_GET["postalcode"];
-                $info = $_GET["about"];
-                $salary = $_GET["arslon"];
-                $ihave = $_GET["group1"];
-                $lookingfor = $_GET["group2"];
-                $stmt->execute();
-                
-                /*
-                $sql = "INSERT INTO users (usrname, hashpass, firstname, lastname, mail, zip, info, salary, ihave, lookingfor)
-                VALUES ($username, $hashpass,  $firstname, $lastname, $mail, $zip, $info, $salary, $ihave, $lookingfor)";
-                */
-            }
-            ?>
-            <script>
-            function alertfunction() {
-                alert("Account creation succesful!");
-            }
-            </script>
+            <input type="text" name="salary"><br>
+            <button type="submit">Register</button>
+            <input type="button" onclick="location.href='index.php';" value="Login" />
         </form>
     </body>
 </html>

@@ -1,3 +1,24 @@
+<?php
+session_start();
+require_once('connect.php');
+if (isset($_POST) & !empty($_POST)) {
+    $username = mysqli_real_escape_string($connection, $_POST['username']);
+    $password = md5($_POST['password']);
+    $sql = "SELECT * FROM `users` WHERE username='$username' AND password='$password'";
+    $result = mysqli_query($connection, $sql);
+    $count = mysqli_num_rows($result);
+    if($count == 1){
+        $_SESSION['username'] = $username;
+    }else{
+        $fmsg = "Invalid username/password";
+    }
+}
+if(isset($_SESSION['username'])){
+    $smsg = "User already logged in";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,42 +26,16 @@
         <title>Get Benis</title>
     </head>
     <body>
-        <form>
-            User name:<br>
-            <input type="text" name="usrname"><br>
+        <?php if(isset($smsg)){ ?><?php echo $smsg; ?><?php } ?><br>
+        <?php if(isset($fmsg)){ ?><?php echo $fmsg; ?><?php } ?><br>
+        <form method="POST">
+            Username:<br>
+            <input type="text" name="username"><br>
             Password:<br>
-            <input type="text" name="hashpass"><br>
-            <input type="button" onclick="location.href='profile.php'" value="SIGN IN"></button>
-            or
-            <input type="button" onclick="location.href='register.php'" value="CREATE ACCOUNT"></button>
-</form>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "benis_users";
-// Skapa uppkoppling
-$conn = new mysqli($servername, $username, $password);
-// Kolla att det går att koppla sig, om ej, skriv ut felet
-if ($conn->connect_error) {
-    die("Något gick snett: " . $conn->connect_error);
-}
-echo "Uppkopplingen till databasen lyckades</br>";
-
-$sql = "SELECT * FROM table_name WHERE some_criteria = some_value";
-
-$result = $db->query($sql);
-
-while($row = $result->fetch_assoc()){
-   echo $row['kolumn_namn'];
-}
-
-$sql = $db->prepare("SELECT * FROM users WHERE username = ?");
-$statement->bind_param('s', $name);
-
-$name = 'Bob';
-$stmt->execute();
-
-?>
+            <input type="password" name="password"><br>
+            <button type="submit">Login</button>
+            <input type="button" onclick="location.href='register.php';" value="Register" />
+        </form>
+        
     </body>
 </html>
