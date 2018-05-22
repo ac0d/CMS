@@ -10,3 +10,9 @@
 [22-May-2018 14:23:00 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/Projects/Project1/profile.php on line 25
 [22-May-2018 14:23:00 UTC] PHP Stack trace:
 [22-May-2018 14:23:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/Projects/Project1/profile.php:0
+[22-May-2018 15:31:03 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/Projects/Project1/index.php on line 32
+[22-May-2018 15:31:03 UTC] PHP Stack trace:
+[22-May-2018 15:31:03 UTC] PHP   1. {main}() /home/ubuntu/workspace/Projects/Project1/index.php:0
+[22-May-2018 15:31:07 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/Projects/Project1/register.php on line 68
+[22-May-2018 15:31:07 UTC] PHP Stack trace:
+[22-May-2018 15:31:07 UTC] PHP   1. {main}() /home/ubuntu/workspace/Projects/Project1/register.php:0

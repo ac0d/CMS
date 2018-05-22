@@ -17,7 +17,7 @@
             Last name:<br>
             <input type="text" name="lastname"><br>
             E-mail:<br>
-            <input type="text" name="email">
+            <input type="text" name="email"><br>
             Postal Code:<br>
             <input type="text" name="postalcode"><br>
 			About You:<br>
