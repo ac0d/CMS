@@ -14,7 +14,7 @@ if (isset($_POST) & !empty($_POST)) {
     }
 }
 if(isset($_SESSION['username'])){
-    $smsg = "User already logged in";
+    header('Location: profile.php');
 }
 
 ?>

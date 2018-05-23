@@ -7,7 +7,7 @@ if (isset($_POST) & !empty($_POST)) {
     $lastname = mysqli_real_escape_string($connection, $_POST['lastname']);
     $email = mysqli_real_escape_string($connection, $_POST['email']);
     $zip = mysqli_real_escape_string($connection, $_POST['zip']);
-    $salary = mysqli_real_escape_string($connection, $_POST['salary']);
+    $salary = $_POST['salary'];
     $info = mysqli_real_escape_string($connection, $_POST['info']);
     $ihave = mysqli_real_escape_string($connection, $_POST['ihave']);
     $iwant = mysqli_real_escape_string($connection, $_POST['iwant']);
