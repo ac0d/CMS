@@ -7,11 +7,13 @@ if (isset($_POST) & !empty($_POST)) {
     $lastname = mysqli_real_escape_string($connection, $_POST['lastname']);
     $email = mysqli_real_escape_string($connection, $_POST['email']);
     $zip = mysqli_real_escape_string($connection, $_POST['zip']);
-    $info = mysqli_real_escape_string($connection, $_POST['info']);
     $salary = mysqli_real_escape_string($connection, $_POST['salary']);
+    $info = mysqli_real_escape_string($connection, $_POST['info']);
+    $ihave = mysqli_real_escape_string($connection, $_POST['ihave']);
+    $iwant = mysqli_real_escape_string($connection, $_POST['iwant']);
     
-    $sql = "INSERT INTO `users` (username, password, firstname, lastname, email, zip, info, salary) 
-    VALUES ('$username', '$password', '$firstname', '$lastname', '$email', '$zip', '$info', '$salary',)";
+    $sql = "INSERT INTO `users` (username, password, email, firstname, lastname, zip, salary, info, ihave, iwant) 
+    VALUES ('$username', '$password', '$email', '$firstname', '$lastname', '$zip', '$salary', '$info', '$ihave', '$iwant')";
     $result = mysqli_query($connection, $sql);
     if($result){
         $smsg = "User Registration Succesful";
@@ -36,18 +38,26 @@ if (isset($_POST) & !empty($_POST)) {
             <input type="text" name="username"><br>
             Password:<br>
             <input type="password" name="password"><br>
+            Email:<br>
+            <input type="email" name="email"><br>
             First name:<br>
             <input type="text" name="firstname"><br>
             Last name:<br>
             <input type="text" name="lastname"><br>
-            Email:<br>
-            <input type="email" name="email"><br>
             Postal Code:<br>
             <input type="text" name="zip"><br>
+            Årslön:<br>
+            <input type="text" name="salary">€<br>
 			About You:<br>
 			<input type="text" name="info"><br>
-            Årslön:<br>
-            <input type="text" name="salary"><br>
+			I have a:<br>
+			<input type="radio" name="ihave" value="benis">Benis<br>
+            <input type="radio" name="ihave" value="bussy">Bussy<br>
+            <input type="radio" name="ihave" value="both">Both<br>
+            I want a:<br>
+			<input type="radio" name="iwant" value="benis">Benis<br>
+            <input type="radio" name="iwant" value="bussy">Bussy<br>
+            <input type="radio" name="iwant" value="both">Both<br>
             <button type="submit">Register</button>
             <input type="button" onclick="location.href='index.php';" value="Login" />
         </form>
