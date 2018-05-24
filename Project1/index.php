@@ -1,22 +1,8 @@
 <?php
 session_start();
 require_once('connect.php');
-if (isset($_POST) & !empty($_POST)) {
-    $username = mysqli_real_escape_string($connection, $_POST['username']);
-    $password = md5($_POST['password']);
-    $sql = "SELECT * FROM `users` WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($connection, $sql);
-    $count = mysqli_num_rows($result);
-    if($count == 1){
-        $_SESSION['username'] = $username;
-    }else{
-        $fmsg = "Invalid username/password";
-    }
-}
-if(isset($_SESSION['username'])){
-    header('Location: profile.php');
-}
-
+$sql = "SELECT email, firstname, lastname, zip, salary, info, ihave, iwant FROM users";
+$result = mysqli_query($connection, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -26,16 +12,31 @@ if(isset($_SESSION['username'])){
         <title>Get Benis</title>
     </head>
     <body>
-        <?php if(isset($smsg)){ ?><?php echo $smsg; ?><?php } ?><br>
-        <?php if(isset($fmsg)){ ?><?php echo $fmsg; ?><?php } ?><br>
-        <form method="POST">
-            Username:<br>
-            <input type="text" name="username"><br>
-            Password:<br>
-            <input type="password" name="password"><br>
-            <button type="submit">Login</button>
-            <input type="button" onclick="location.href='register.php';" value="Register" />
-        </form>
-        
+        <?php
+        if(isset($_SESSION['username'])){
+            echo "You are logged in as: " . $_SESSION['username'] . ".<br><br>";
+            if($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "Name: ".$row["firstname"]." ".$row["lastname"]." | E-mail: ".$row["email"]." | Postal code: ".$row["zip"]." | Anual salary: ".$row["salary"]."€".
+                    "<br>I have a: ".$row["ihave"]." | I'm looking for: ".$row["iwant"]." | About me: ".$row["info"]."<br><br>";
+                }
+            }else{
+                echo "0 results";
+            }
+        }else{
+            echo "You are not logged in.<br><br>";
+            if($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                echo "Name: ".$row["firstname"]." ".$row["lastname"]." | Postal code: ".$row["zip"]." | Anual salary: ".$row["salary"]."€".
+                    "<br>I have a: ".$row["ihave"]." | I'm looking for: ".$row["iwant"]." | About me: ".$row["info"]."<br><br>";
+                }
+            }else{
+                echo "0 results";
+            }
+        }
+        ?>
+        <input type="button" onclick="location.href='login.php';" value="Login" />
+        <input type="button" onclick="location.href='register.php';" value="Register" />
+        <input type="button" onclick="location.href='logout.php';" value="Logout" />
     </body>
 </html>

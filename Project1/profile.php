@@ -11,9 +11,11 @@ require_once('connect.php');
     </head>
     <body>
         <?php
-        echo "Welcome " . $_SESSION['username'] . ".<br>"
+        echo "You are logged in as: " . $_SESSION['username'] . ".<br><br>";
         ?>
         This is your profile
+        
         <input type="button" onclick="location.href='logout.php';" value="Logout" />
+        <input type="button" onclick="location.href='index.php';" value="Home" />
     </body>
 </html>

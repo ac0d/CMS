@@ -70,3 +70,5 @@
 [22-May-2018 18:58:49 UTC] PHP Parse error:  syntax error, unexpected '"User Registration Succesful"' (T_CONSTANT_ENCAPSED_STRING) in /home/ubuntu/workspace/Projects/Project1/register.php on line 19
 [22-May-2018 19:25:10 UTC] PHP Parse error:  syntax error, unexpected '"User Registration Succesful"' (T_CONSTANT_ENCAPSED_STRING) in /home/ubuntu/workspace/Projects/Project1/register.php on line 19
 [22-May-2018 19:25:29 UTC] PHP Parse error:  syntax error, unexpected '"User Registration Succesful"' (T_CONSTANT_ENCAPSED_STRING) in /home/ubuntu/workspace/Projects/Project1/register.php on line 19
+[23-May-2018 20:22:05 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/ubuntu/workspace/Projects/Project1/index.php on line 36
+[24-May-2018 04:44:48 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ubuntu/workspace/Projects/Project1/register.php on line 129
